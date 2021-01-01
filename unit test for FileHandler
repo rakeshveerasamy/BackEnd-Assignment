@@ -1,0 +1,312 @@
+When all parameter are given by the user:
+
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String path="E:";
+    	 String key = "employee";
+    	 int seconds = 120000;
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 1000);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(path,key,jo,seconds);
+		 } 
+         catch (IOException e)
+         {
+		
+		}
+    }
+}
+
+When path is treated as optional parmeter:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String key = "employee1";
+    	 int seconds = 120000;
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 1000);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(key,jo,seconds);
+		 } 
+         catch (IOException e)
+         {
+		
+		}
+    }
+}
+
+When seconds is treated as optional parameter:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String path="E:";
+    	 String key = "employee2";
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 1000);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(path,key,jo);
+		 } 
+         catch (IOException e)
+         {
+		
+		}
+    }
+}
+
+When both path and seconds are treated as optional parameter:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String key = "employee3";
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 1000);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(key,jo);
+		 } 
+         catch (IOException e)
+         {
+		
+		}
+    }
+}
+
+
+Test for key capped at 32 char:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String path="E:";
+    	 int seconds = 10000;
+    	 String key = "employeeemployeeemployeeemployeeemployeeemployeeemployeeemployeeemployeeemployee";
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 1000);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(path,key,jo,seconds);
+		 } 
+         catch (IOException e)
+         {
+		
+		}
+    }
+}
+Test for create is invoked for an existing key:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String path="E:";
+    	 int seconds = 60000;
+    	 String key = "employee4";
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 27);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(path,key,jo);
+lib.Create(path,key,jo);
+
+		 } 
+         catch (IOException e)
+         {
+		
+		}
+    }
+}
+
+
+Test for read operation:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String path="E:";
+    	 int seconds = 60000;
+    	 String key = "employee5";
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 27);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(path,key,jo);
+			JSONObject jb = lib.Read(key);
+     	   	System.out.println(jb.get("firstName"));
+     	   	System.out.println(jb.get("secondName"));
+
+			
+        	 
+		 } 
+         catch (Exception e)
+         {
+        	 e.printStackTrace();
+		}
+    }
+}
+
+Test for delete operation:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String path="E:";
+    	 int seconds = 60000;
+    	 String key = "employee6";
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 27);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			
+			 lib.Delete(key);
+		 } 
+         catch (Exception e)
+         {
+        	 e.printStackTrace();
+		}
+    }
+}
+
+
+To test time to live property:
+
+package test;
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+
+public class tester {
+    public static void main(String[] args)  {
+    	 String path="E:";
+    	 int seconds = 60000;
+    	 String key = "employee7";
+         JSONObject jo = new JSONObject();
+         jo.put("firstName", "john");
+         jo.put("secondName", "rajesh");
+         jo.put("salary'", 27);
+         File_handling_lib  lib = new File_handling_lib();
+         try 
+         {
+			lib.Create(path,key,jo,seconds);
+			
+
+		 } 
+         catch (Exception e)
+         {
+        	 e.printStackTrace();
+		}
+    }
+}
+
+
+
+Test for support multithreading:
+
+import java.io.IOException;
+import org.json.simple.JSONObject;
+import JavaBackEnd.FileHandler;
+public class list {
+	 private static int i=-1;
+  public static class SomethingToRun implements Runnable {
+	  
+	  String[] key = {"employee8","employee9","employee10","employee11","employee12"};
+	  int[] seconds = {40000,60000,80000,100000,120000};
+    
+ 
+    public  void run() {
+     
+     String path="E:/jar";
+     JSONObject jo = new JSONObject();
+     jo.put("firstName", "goki");
+     jo.put("secondName", "monkeky");
+     jo.put("salary'", 1000);
+     File_handling_lib  lib = new File_handling_lib();
+     synchronized (path) 
+     {         
+         i++;
+	}
+    
+    
+    try
+    {
+		lib.Create(key[i], jo,seconds[i]);
+	}
+    catch (IOException e) 
+    {
+		e.printStackTrace();
+	}
+    }
+  } 
+  public static void main(String[] args) {
+    SomethingToRun sharedRunnableInstance = new SomethingToRun();
+ 
+    for(int i=0;i<5;i++)
+    {
+    	Thread thread1 = new Thread(sharedRunnableInstance);
+        thread1.start();	
+    }
+    
+     
+  }
+ 
+}
